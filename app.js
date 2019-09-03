@@ -25,6 +25,23 @@ app.use(bodyParser.json());
 
 
 
+
+
+app.use('/api/recipes', (req, res, next) => {
+  Recipe.find().then(
+    (recipes) => {
+      res.status(200).json(recipes);
+    }
+  ).catch(
+    (error) => {
+      res.status(400).json({
+        error: error
+      });
+    }
+  );
+});
+
+
 /*app.use('/api/recipes', (req, res, next) => {
   const recipes = [
     {
